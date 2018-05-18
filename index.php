@@ -22,6 +22,18 @@ if ( have_posts() ) :
 	else :
 		echo '記事はありません';
 	endif;
+
+	$my_query = new WP_Query( array(
+		‘post_type’     => ‘news’,
+		‘post_per_page’ => ‘2’,
+	) );
+if ( $my_query->have_posts() ) :
+while ( $my_query->have_posts() ) :
+			$my_query->the_post();
+			the_content();
+endwhile;
+endif;
+	wp_reset_postdata();
 	?>
 
 <?php
